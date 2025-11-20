@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dtm_soldadura_form_view" model="ir.ui.view">
+            <field name="name">dtm.soldadura.form</field>
+            <field name="model">dtm.soldadura</field>
+            <field name="arch" type="xml">
+                <form >
+                    <sheet>
+                        <group>
+                            <field name="orden_trabajo"/>
+                            <field name="revision_ot"/>
+                            <field name="create_date" string="Fecha Entrada"/>
+                            <field name="tipo_orden"/>
+                            <field name="cliente"/>
+                            <field name="product_name"/>
+                            <field name="disenador"/>
+                        </group>
+                            <field name="planos_id">
+                                <tree >
+                                    <field name="nombre"/>
+                                    <field name="soldador"/>
+                                    <button type="object" name="action_inicio" icon="fa-play" class="btn btn-success" attrs="{'invisible':[('start','=',True)]}"/>
+                                    <button type="object" name="action_stop" icon="fa-stop" class="btn btn-warning" attrs="{'invisible':[('start','=',False)]}"/>
+                                    <field name="tiempo_total"/>
+                                    <field name="start" invisible="1"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="soldador"/>
+                                    </group>
+                                    <field name="archivo" filename="nombre" widget="pdf_viewer"/>
+                                    <field name="nombre" invisible="1"/>
+                                    <field name="tiempos_id">
+                                        <tree>
+                                            <field name="create_date" string="Fecha"/>
+                                            <field name="tiempo"/>
+                                        </tree>
+                                    </field>
+                                </form>
+                            </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dtm_soldadura_tree_view" model="ir.ui.view">
+            <field name="name">dtm.soldadura.tree</field>
+            <field name="model">dtm.soldadura</field>
+            <field name="arch" type="xml">
+                <tree string="ModelTitle">
+                    <field name="orden_trabajo"/>
+                    <field name="revision_ot"/>
+                    <field name="create_date" string="Fecha Entrada"/>
+                    <field name="tipo_orden"/>
+                    <field name="cliente"/>
+                    <field name="product_name"/>
+                    <field name="disenador"/>
+                    <field name="priority" widget="priority" attrs="{'readonly':[('permiso','=',False)]}"/>
+                    <field name="permiso" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="ModelName_search_view" model="ir.ui.view">-->
+<!--            <field name="name">ProjectName.ModelName.search</field>-->
+<!--            <field name="model">ProjectName.ModelName</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="ModelTitle">-->
+<!--                    <group expand="1" string="Group By">-->
+<!--                        <filter string="Example Field" name="example_field" domain="[]"-->
+<!--                                context="{'group_by':'example_field'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="dtm_soldadura_act_window" model="ir.actions.act_window">
+            <field name="name">Soldadura</field>
+            <field name="res_model">dtm.soldadura</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--        <menuitem name="Soldadura" id="dtm_soldadura_menu" action="dtm_soldadura_act_window"/>-->
+
+    </data>
+</odoo>

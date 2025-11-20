@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dtm_soldadura_access,access.dtm.soldadura,model_dtm_soldadura,base.group_user,1,1,1,1
+dtm_soldadura_temporales_access,access.dtm.soldadura.temporales,model_dtm_soldadura_temporales,base.group_user,1,1,1,1
+dtm_soldadura_tiempos_accsess,access.dtm.soldadura.tiempos,model_dtm_soldadura_tiempos,base.group_user,1,1,1,1
