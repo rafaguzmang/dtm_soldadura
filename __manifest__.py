@@ -7,9 +7,12 @@
     'depends': [],
     'data': [
         # Security
-        'security/ir.model.access.csv',
+        'security/res_groups.xml',
+        # 'security/ir.model.access.csv',
+        'security/model_access.xml',
         # Views
         'views/dtm_soldadura_view.xml',
+        'views/dtm_soldadura_terminados_view.xml',
     ],
     'installable': True
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dtm_soldadura_terminados_form_view" model="ir.ui.view">
+            <field name="name">dtm.soldadura.terminados.form</field>
+            <field name="model">dtm.soldadura.terminados</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+                        <group>
+                            <field name="orden_trabajo"/>
+                            <field name="revision_ot"/>
+                            <field name="tipo_orden"/>
+                            <field name="cliente"/>
+                            <field name="product_name"/>
+                            <field name="disenador"/>
+                        </group>
+
+
+                        <field name="planos_id" >
+                            <tree create="false" delete="false">
+                                <field name="nombre"/>
+<!--                                <field name="archivo"/>-->
+                                <field name="contador"/>
+                                <field name="soldador"/>
+                            </tree>
+                            <form>
+                                <field name="nombre" invisible="1"/>
+                                <field name="archivo" filename="nombre" widget="pdf_viewer"/>
+                                <field name="tiempos_id">
+                                        <tree>
+                                            <field name="create_date" string="Fecha"/>
+                                            <field name="tiempo"/>
+                                        </tree>
+                                    </field>
+                            </form>
+                        </field>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dtm_soldadura_terminados_tree_view" model="ir.ui.view">
+            <field name="name">dtm.soldadura.terminados.tree</field>
+            <field name="model">dtm.soldadura.terminados</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="orden_trabajo"/>
+                    <field name="revision_ot"/>
+                    <field name="tipo_orden"/>
+                    <field name="cliente"/>
+                    <field name="product_name"/>
+                    <field name="disenador"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dtm_soldadura_terminados_act_window" model="ir.actions.act_window">
+            <field name="name">Terminados</field>
+            <field name="res_model">dtm.soldadura.terminados</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Terminados" id="dtm_soldadura_terminados_window_menu" action="dtm_soldadura_terminados_act_window"/>
+
+    </data>
+</odoo>

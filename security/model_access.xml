@@ -1,0 +1,88 @@
+<odoo>
+    <data noupdate="0">
+<!--        General-->
+        <record id="access_dtm_soldadura_general" model="ir.model.access">
+            <field name="name">dtm.soldadura general</field>
+            <field name="model_id" ref="model_dtm_soldadura"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="access_dtm_soldadura_temporales_general" model="ir.model.access">
+            <field name="name">dtm.soldadura.temporales general</field>
+            <field name="model_id" ref="model_dtm_soldadura_temporales"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="access_dtm_soldadura_tiempos_general" model="ir.model.access">
+            <field name="name">dtm.soldadura.tiempos general</field>
+            <field name="model_id" ref="model_dtm_soldadura_tiempos"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="access_dtm_soldadura_terminados_general" model="ir.model.access">
+            <field name="name">dtm.soldadura.terminados general</field>
+            <field name="model_id" ref="model_dtm_soldadura_terminados"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="access_dtm_soldadura_terminados_planos_general" model="ir.model.access">
+            <field name="name">dtm.soldadura.terminados.planos general</field>
+            <field name="model_id" ref="model_dtm_soldadura_terminados_planos"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+<!--        Restricciones-->
+        <record id="access_dtm_soldadura_restringido" model="ir.model.access">
+            <field name="name">dtm.soldadura restringido</field>
+            <field name="model_id" ref="model_dtm_soldadura"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_restringido"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="access_dtm_soldadura_temporales_restringido" model="ir.model.access">
+            <field name="name">dtm.soldadura.temporales restringido</field>
+            <field name="model_id" ref="model_dtm_soldadura_temporales"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_restringido"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+        <record id="access_dtm_soldadura_tiempos_restringido" model="ir.model.access">
+            <field name="name">dtm.soldadura.tiempos restringido</field>
+            <field name="model_id" ref="model_dtm_soldadura_tiempos"/>
+            <field name="group_id"  ref="dtm_soldadura.group_dtm_soldadura_restringido"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="rule_ir_attachment_admin" model="ir.rule">
+            <field name="name">Admin Access to Attachments</field>
+            <field name="model_id" ref="base.model_ir_attachment"/>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+    </data>
+</odoo>

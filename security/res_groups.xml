@@ -1,0 +1,11 @@
+<odoo>
+<!--    Soldadura-->
+    <record id="group_dtm_soldadura_restringido" model="res.groups">
+        <field name="name">DTM Soldadura Restringido</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+    <record id="group_dtm_soldadura_general" model="res.groups">
+        <field name="name">DTM Soldadura General</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

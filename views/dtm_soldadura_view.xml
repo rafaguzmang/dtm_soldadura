@@ -7,6 +7,9 @@
             <field name="model">dtm.soldadura</field>
             <field name="arch" type="xml">
                 <form >
+                    <header>
+                         <button type="object" name="action_finalizar" string="FINALIZAR ORDEN" icon="fa-print" title="print" class="btn btn-primary"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="orden_trabajo"/>
@@ -23,6 +26,10 @@
                                     <field name="soldador"/>
                                     <button type="object" name="action_inicio" icon="fa-play" class="btn btn-success" attrs="{'invisible':[('start','=',True)]}"/>
                                     <button type="object" name="action_stop" icon="fa-stop" class="btn btn-warning" attrs="{'invisible':[('start','=',False)]}"/>
+                                    <field name="contador"/>
+                                    <button type="object" name="action_mas" icon="fa-chevron-up" title="plus" class="btn btn-primary" attrs="{'invisible':[('start','!=',True)]}"/>
+                                    <field name="status"/>
+<!--                                    <button type="object" name="action_menos" icon="fa-chevron-down" title="plus" class="btn btn-primary" />-->
                                     <field name="tiempo_total"/>
                                     <field name="start" invisible="1"/>
                                 </tree>
@@ -31,7 +38,7 @@
                                         <field name="soldador"/>
                                     </group>
                                     <field name="archivo" filename="nombre" widget="pdf_viewer"/>
-                                    <field name="nombre" invisible="1"/>
+                                    <field name="nombre" invisible="0"/>
                                     <field name="tiempos_id">
                                         <tree>
                                             <field name="create_date" string="Fecha"/>
@@ -80,9 +87,10 @@
             <field name="name">Soldadura</field>
             <field name="res_model">dtm.soldadura</field>
             <field name="view_mode">tree,form</field>
+<!--            <field name="groups_id" eval="[(4,ref('dtm_soldadura.group_dtm_soldadura'))]"/>-->
         </record>
 
-<!--        <menuitem name="Soldadura" id="dtm_soldadura_menu" action="dtm_soldadura_act_window"/>-->
+        <menuitem name="Soldadura" id="dtm_soldadura_menu" action="dtm_soldadura_act_window"/>
 
     </data>
 </odoo>
