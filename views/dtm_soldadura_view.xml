@@ -90,7 +90,7 @@
 <!--            <field name="groups_id" eval="[(4,ref('dtm_soldadura.group_dtm_soldadura'))]"/>-->
         </record>
 
-        <menuitem name="Soldadura" id="dtm_soldadura_menu" action="dtm_soldadura_act_window"/>
+<!--        <menuitem name="Soldadura" id="dtm_soldadura_menu" action="dtm_soldadura_act_window"/>-->
 
     </data>
 </odoo>

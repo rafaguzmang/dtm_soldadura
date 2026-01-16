@@ -42,39 +42,39 @@ class Soldadura(models.Model):
             if False not in record.maquinados_id.mapped('terminado'):
                 record.finalizado = True
 
-    # def get_view(self, view_id=None, view_type='form', **options):
-    #     res = super(Soldadura, self).get_view(view_id, view_type, **options)
-    #     get_soldadura = self.env['dtm.proceso'].search([('status','=','soldadura')])
-    #     for record in get_soldadura:
-    #         # Se obtiene la información desde diseño
-    #         get_diseno = self.env['dtm.odt'].search([('ot_number','=',record.ot_number),('revision_ot','=',record.revision_ot)],limit=1)
-    #         vals = {
-    #             'orden_trabajo':record.ot_number,
-    #             'cliente':record.name_client,
-    #             'product_name':get_diseno.product_name,
-    #             'revision_ot':record.revision_ot,
-    #             'tipo_orden':record.tipe_order,
-    #             'disenador':get_diseno.disenador,
-    #         }
-    #         get_self = self.env['dtm.soldadura'].search([('orden_trabajo','=',record.ot_number),('revision_ot','=',record.revision_ot)],limit=1)
-    #         if get_self:
-    #             get_self.write(vals)
-    #         else:
-    #             get_self = self.env['dtm.soldadura'].create(vals)
-    #
-    #         if record.anexos_id:
-    #             for plano in get_diseno.anexos_id:
-    #                 attachment = self.env['ir.attachment'].browse(plano.id)
-    #                 vals = {
-    #                     'model_id':get_self.id,
-    #                     'nombre':attachment.name,
-    #                     'archivo':attachment.datas,
-    #                     'cantidad':get_diseno.cuantity
-    #                 }
-    #                 get_planos = self.env['dtm.soldadura.temporales'].search([('model_id','=',get_self.id),('nombre','=',plano.name)],limit=1)
-    #                 get_planos.write(vals) if get_planos else get_planos.create(vals)
-    #
-    #     return res
+    def get_view(self, view_id=None, view_type='form', **options):
+        res = super(Soldadura, self).get_view(view_id, view_type, **options)
+        get_soldadura = self.env['dtm.proceso'].search([('status','=','soldadura')])
+        for record in get_soldadura:
+            # Se obtiene la información desde diseño
+            get_diseno = self.env['dtm.odt'].search([('ot_number','=',record.ot_number),('revision_ot','=',record.revision_ot)],limit=1)
+            vals = {
+                'orden_trabajo':record.ot_number,
+                'cliente':record.name_client,
+                'product_name':get_diseno.product_name,
+                'revision_ot':record.revision_ot,
+                'tipo_orden':record.tipe_order,
+                'disenador':get_diseno.disenador,
+            }
+            get_self = self.env['dtm.soldadura'].search([('orden_trabajo','=',record.ot_number),('revision_ot','=',record.revision_ot)],limit=1)
+            if get_self:
+                get_self.write(vals)
+            else:
+                get_self = self.env['dtm.soldadura'].create(vals)
+
+            if record.anexos_id:
+                for plano in get_diseno.anexos_id:
+                    attachment = self.env['ir.attachment'].browse(plano.id)
+                    vals = {
+                        'model_id':get_self.id,
+                        'nombre':attachment.name,
+                        'archivo':attachment.datas,
+                        'cantidad':get_diseno.cuantity
+                    }
+                    get_planos = self.env['dtm.soldadura.temporales'].search([('model_id','=',get_self.id),('nombre','=',plano.name)],limit=1)
+                    get_planos.write(vals) if get_planos else get_planos.create(vals)
+
+        return res
 
     def action_finalizar(self):
             vals = {
@@ -133,7 +133,8 @@ class Temporales(models.Model):
 
     start = fields.Boolean()
     contador = fields.Integer()
-    soldador = fields.Selection(string='Soldador', selection=[('aaron','Aaron Manquero Cereceres'),('antonio','Jorge Antonio Manquero Cereceres'),('jose','José Guadalupe García Rentería')],readonly=False)
+    soldador = fields.Selection(string='Soldador', selection=[  ('aaron','Aaron Manquero Cereceres'),('antonio','Jorge Antonio Manquero Cereceres'),('jose','José Guadalupe García Rentería'),
+                                                                ('guerrero', 'José Guerrero Ugarte Maldonado'), ('luis', 'Luis Alonso Morales Quezada'),('daniel', 'Daniel Palacios Beltrán')           ],readonly=False)
     status = fields.Float()
 
     tiempos_id = fields.One2many('dtm.soldadura.tiempos','model_id', readonly = True)
@@ -158,7 +159,6 @@ class Temporales(models.Model):
         if self.contador >= self.cantidad:
             self.terminado = True
             self.action_stop()
-
 
     def action_menos(self):
         self.contador -= 1
