@@ -141,6 +141,15 @@ class Temporales(models.Model):
     timer = fields.Datetime()
     tiempo_total = fields.Float(string="Tiempo", readonly=True)
 
+    def write(self,vals):
+        res = super(Temporales,self).write(vals)
+        self.env['bus.bus']._sendone(
+            'canal_soldadura',
+            'soldadura',
+            {'mensaje':'Actuliza Soldadura'}
+        )
+        return res
+
     def action_inicio(self):
         self.start = True
         self.timer = datetime.today()
