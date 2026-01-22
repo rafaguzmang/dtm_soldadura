@@ -134,7 +134,7 @@ class Temporales(models.Model):
     start = fields.Boolean()
     contador = fields.Integer()
     soldador = fields.Selection(string='Soldador', selection=[  ('aaron','Aaron Manquero Cereceres'),('antonio','Jorge Antonio Manquero Cereceres'),('jose','José Guadalupe García Rentería'),
-                                                                ('guerrero', 'José Guerrero Ugarte Maldonado'), ('luis', 'Luis Alonso Morales Quezada'),('daniel', 'Daniel Palacios Beltrán')           ],readonly=False)
+                                                                ('luis', 'Luis Alonso Morales Quezada'),('daniel', 'Daniel Palacios Beltrán')           ],readonly=False)
     status = fields.Float()
 
     tiempos_id = fields.One2many('dtm.soldadura.tiempos','model_id', readonly = True)
